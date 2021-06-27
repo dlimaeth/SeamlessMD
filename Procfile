@@ -1,0 +1,1 @@
+web: gunicorn SeamlessMD.wsgi --log-file -
