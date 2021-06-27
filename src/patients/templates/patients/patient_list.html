@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+
+h4 {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#patients {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#patients td, #patients th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#patients tr:nth-child(even){background-color: #f2f2f2;}
+
+#patients tr:hover {background-color: #ddd;}
+
+#patients th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #0499aa;
+  color: white;
+}
+
+.female {
+    color: red;
+}
+
+.male {
+    color: blue;
+}
+</style>
+</head>
+
+{% block content %}
+<body>
+    <h4>Number of patients: {{data|length}}</h4>
+    <h4>Average age of patients: {{avg_age}}</h4>
+    <table id="patients">
+        <tr>
+            <th>Name</th>
+            <th>Gender</th>
+            <th>Birthdate</th>
+        </tr>
+        {% for item in data %}
+        <tr>
+            <td> {{item.given}} {{item.family}}</td>
+            <td> 
+                {% if item.gender == 'female' %} <p class="female"> ♀ </p>
+                {% elif item.gender == 'male' %} <p class="male"> ♂ </p>	 
+                {% else %} -
+                {% endif %}
+
+            </td>
+            <td> 
+                {% if item.birthDate %}
+                {{item.birthDate}} 
+                {% else %} -
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+
+</body>
+{% endblock %}
