@@ -19,5 +19,5 @@ from patients.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('patients/', patient_view)
+    path('', patient_view)
 ]
